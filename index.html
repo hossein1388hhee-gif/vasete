@@ -11,7 +11,6 @@
   --panel:#0e2115;
   --panel2:#142a1b;
   --green:#39df82;
-  --green-dark:#1ba85a;
   --text:#f5fff8;
   --muted:#9eb5a5;
   --border:#274b34;
@@ -95,9 +94,7 @@ header{
 .card-body{padding:17px}
 .card h3{margin:0 0 14px;font-size:17px}
 .info-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.info{
-  background:#09150e;border-radius:9px;padding:9px
-}
+.info{background:#09150e;border-radius:9px;padding:9px}
 .info small{display:block;color:var(--muted);font-size:11px;margin-bottom:4px}
 .info strong{font-size:12px}
 .price{display:flex;justify-content:space-between;align-items:center;margin-top:14px;padding-top:13px;border-top:1px solid var(--border)}
@@ -105,7 +102,6 @@ header{
 .price b{color:var(--green)}
 .card-actions{display:flex;gap:8px;margin-top:14px}
 .card-actions button{flex:1}
-
 .empty{grid-column:1/-1;text-align:center;padding:50px;color:var(--muted);background:var(--panel);border-radius:16px}
 
 .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
@@ -131,12 +127,11 @@ footer{text-align:center;padding:25px;color:var(--muted);border-top:1px solid va
 
 .form-group{margin-bottom:13px}
 .form-group label{display:block;margin-bottom:7px;font-size:13px;color:#d4e5da}
-.form-group input,.form-group textarea,.form-group select{
+.form-group input,.form-group textarea{
   width:100%;background:#09150e;color:white;border:1px solid var(--border);
   border-radius:9px;padding:12px;outline:none
 }
 .form-group textarea{min-height:100px;resize:vertical}
-.form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:var(--green)}
 
 .notice{
   padding:12px;border-radius:10px;background:rgba(57,223,130,.1);
@@ -167,13 +162,6 @@ footer{text-align:center;padding:25px;color:var(--muted);border-top:1px solid va
 .status.cancel{background:rgba(255,98,98,.13);color:var(--danger)}
 .order small{color:var(--muted);display:block;margin-top:8px}
 
-.chat{display:flex;flex-direction:column;gap:10px;max-height:300px;overflow:auto;padding:5px}
-.msg{padding:10px;border-radius:10px;max-width:80%;font-size:13px}
-.msg.me{align-self:flex-start;background:#183d27}
-.msg.other{align-self:flex-end;background:#202b23}
-.chat-form{display:flex;gap:8px;margin-top:12px}
-.chat-form input{flex:1}
-
 .toast{
   position:fixed;left:18px;bottom:18px;background:#183221;border:1px solid var(--green);
   padding:13px 17px;border-radius:10px;display:none;z-index:2000
@@ -191,8 +179,6 @@ footer{text-align:center;padding:25px;color:var(--muted);border-top:1px solid va
   .nav-actions{width:100%}
   .nav-actions button{flex:1}
   .stats,.steps,.grid{grid-template-columns:1fr}
-  .card-img{height:150px}
-  .section-head{align-items:flex-start;flex-direction:column}
 }
 </style>
 </head>
@@ -202,7 +188,6 @@ footer{text-align:center;padding:25px;color:var(--muted);border-top:1px solid va
 <header>
   <div class="nav">
     <div class="logo">eFootball <span>Market</span></div>
-
     <div class="nav-actions" id="navActions">
       <button class="btn outline" onclick="openModal('authModal')">ورود / ثبت‌نام</button>
       <button class="btn primary" onclick="openSell()">+ فروش اکانت</button>
@@ -210,7 +195,7 @@ footer{text-align:center;padding:25px;color:var(--muted);border-top:1px solid va
   </div>
 </header>
 
-<section class="hero" id="home">
+<section class="hero">
   <span class="badge">⚽ بازار واسطه‌ای اکانت eFootball</span>
   <h1>خرید و فروش <span>امن‌تر</span> اکانت</h1>
   <p>آگهی ثبت کن، اکانت مناسب پیدا کن و وضعیت معامله را مرحله‌به‌مرحله پیگیری کن.</p>
@@ -221,8 +206,8 @@ footer{text-align:center;padding:25px;color:var(--muted);border-top:1px solid va
   </div>
 
   <div class="stats">
-    <div class="stat"><strong id="statAccounts">0</strong><span>آگهی فعال</span></div>
-    <div class="stat"><strong id="statOrders">0</strong><span>درخواست معامله</span></div>
+    <div class="stat"><strong id="statAccounts">۰</strong><span>آگهی فعال</span></div>
+    <div class="stat"><strong id="statOrders">۰</strong><span>درخواست معامله</span></div>
     <div class="stat"><strong>24/7</strong><span>پیگیری سفارش</span></div>
   </div>
 </section>
@@ -235,7 +220,7 @@ footer{text-align:center;padding:25px;color:var(--muted);border-top:1px solid va
   </div>
 
   <div class="toolbar">
-    <input id="search" placeholder="جستجو: مسی، رونالدو، قدرت تیم..." oninput="renderAccounts()">
+    <input id="search" placeholder="جستجو..." oninput="renderAccounts()">
     <select id="sort" onchange="renderAccounts()">
       <option value="new">جدیدترین</option>
       <option value="low">ارزان‌ترین</option>
@@ -245,35 +230,18 @@ footer{text-align:center;padding:25px;color:var(--muted);border-top:1px solid va
 
   <div class="grid" id="accountsList"></div>
 
-  <div class="section-head">
-    <h2>روند معامله</h2>
-  </div>
+  <div class="section-head"><h2>روند معامله</h2></div>
 
   <div class="steps">
-    <div class="step">
-      <div class="step-num">1</div>
-      <h3>ثبت درخواست</h3>
-      <p>خریدار اکانت را انتخاب کرده و درخواست معامله را ثبت می‌کند.</p>
-    </div>
-    <div class="step">
-      <div class="step-num">2</div>
-      <h3>بررسی و انتقال</h3>
-      <p>وضعیت معامله توسط طرفین و پنل مدیریت پیگیری می‌شود.</p>
-    </div>
-    <div class="step">
-      <div class="step-num">3</div>
-      <h3>تأیید نهایی</h3>
-      <p>پس از بررسی انتقال، معامله در وضعیت تکمیل‌شده قرار می‌گیرد.</p>
-    </div>
+    <div class="step"><div class="step-num">1</div><h3>ثبت درخواست</h3><p>خریدار درخواست معامله را ثبت می‌کند.</p></div>
+    <div class="step"><div class="step-num">2</div><h3>بررسی</h3><p>فروشنده و خریدار وضعیت معامله را پیگیری می‌کنند.</p></div>
+    <div class="step"><div class="step-num">3</div><h3>تأیید نهایی</h3><p>پس از انتقال، معامله تکمیل می‌شود.</p></div>
   </div>
 
 </main>
 
-<footer>
-  © 2026 eFootball Market
-</footer>
+<footer>© 2026 eFootball Market</footer>
 
-<!-- AUTH -->
 <div class="modal" id="authModal">
   <div class="modal-box">
     <div class="modal-head">
@@ -289,35 +257,33 @@ footer{text-align:center;padding:25px;color:var(--muted);border-top:1px solid va
     <div id="loginForm">
       <div class="form-group">
         <label>نام کاربری</label>
-        <input id="loginUsername" placeholder="نام کاربری">
+        <input id="loginUsername">
       </div>
       <div class="form-group">
         <label>رمز عبور</label>
-        <input id="loginPassword" type="password" placeholder="رمز عبور">
+        <input id="loginPassword" type="password">
       </div>
       <button class="btn primary" style="width:100%" onclick="login()">ورود</button>
-      <p style="font-size:11px;color:var(--muted);line-height:1.8">حساب مدیر آزمایشی: admin / 1234</p>
     </div>
 
     <div id="registerForm" class="hidden">
       <div class="form-group">
         <label>نام کاربری</label>
-        <input id="registerUsername" placeholder="مثلاً hossein">
+        <input id="registerUsername">
       </div>
       <div class="form-group">
         <label>شماره تماس</label>
-        <input id="registerPhone" placeholder="09xxxxxxxxx">
+        <input id="registerPhone">
       </div>
       <div class="form-group">
         <label>رمز عبور</label>
-        <input id="registerPassword" type="password" placeholder="حداقل 4 کاراکتر">
+        <input id="registerPassword" type="password">
       </div>
       <button class="btn primary" style="width:100%" onclick="register()">ساخت حساب</button>
     </div>
   </div>
 </div>
 
-<!-- SELL -->
 <div class="modal" id="sellModal">
   <div class="modal-box">
     <div class="modal-head">
@@ -325,45 +291,17 @@ footer{text-align:center;padding:25px;color:var(--muted);border-top:1px solid va
       <button class="close" onclick="closeModal('sellModal')">×</button>
     </div>
 
-    <div class="notice">
-      اطلاعات ورود یا رمز اکانت را داخل آگهی عمومی ننویس. فقط اطلاعات مربوط به ویژگی‌های اکانت را ثبت کن.
-    </div>
-
-    <div class="form-group">
-      <label>عنوان آگهی</label>
-      <input id="sellTitle" placeholder="اکانت Epic با مسی و رونالدو">
-    </div>
-
-    <div class="form-group">
-      <label>قدرت تیم</label>
-      <input id="sellPower" placeholder="3200">
-    </div>
-
-    <div class="form-group">
-      <label>بازیکنان مهم</label>
-      <input id="sellPlayers" placeholder="Messi, Ronaldo, Neymar">
-    </div>
-
-    <div class="form-group">
-      <label>Coins / GP</label>
-      <input id="sellCoins" placeholder="5000 Coins">
-    </div>
-
-    <div class="form-group">
-      <label>قیمت (تومان)</label>
-      <input id="sellPrice" type="number" placeholder="3500000">
-    </div>
-
-    <div class="form-group">
-      <label>توضیحات</label>
-      <textarea id="sellDescription" placeholder="اطلاعات بیشتر درباره اکانت..."></textarea>
-    </div>
+    <div class="form-group"><label>عنوان آگهی</label><input id="sellTitle"></div>
+    <div class="form-group"><label>قدرت تیم</label><input id="sellPower"></div>
+    <div class="form-group"><label>بازیکنان مهم</label><input id="sellPlayers"></div>
+    <div class="form-group"><label>Coins / GP</label><input id="sellCoins"></div>
+    <div class="form-group"><label>قیمت</label><input id="sellPrice" type="number"></div>
+    <div class="form-group"><label>توضیحات</label><textarea id="sellDescription"></textarea></div>
 
     <button class="btn primary" style="width:100%" onclick="addAccount()">ثبت آگهی</button>
   </div>
 </div>
 
-<!-- BUY -->
 <div class="modal" id="buyModal">
   <div class="modal-box">
     <div class="modal-head">
@@ -375,27 +313,15 @@ footer{text-align:center;padding:25px;color:var(--muted);border-top:1px solid va
 
     <div class="form-group">
       <label>پیام برای فروشنده</label>
-      <textarea id="buyMessage" placeholder="مثلاً برای خرید آماده هستم..."></textarea>
+      <textarea id="buyMessage"></textarea>
     </div>
 
     <button class="btn primary" style="width:100%" onclick="createOrder()">ثبت درخواست معامله</button>
   </div>
 </div>
 
-<!-- DETAILS -->
-<div class="modal" id="detailsModal">
-  <div class="modal-box">
-    <div class="modal-head">
-      <h2>جزئیات آگهی</h2>
-      <button class="close" onclick="closeModal('detailsModal')">×</button>
-    </div>
-    <div id="detailsContent"></div>
-  </div>
-</div>
-
-<!-- DASHBOARD -->
 <div class="modal" id="dashboardModal">
-  <div class="modal-box" style="width:min(1000px,100%)">
+  <div class="modal-box" style="width:min(900px,100%)">
     <div class="modal-head">
       <h2 id="dashboardTitle">پنل کاربری</h2>
       <button class="close" onclick="closeModal('dashboardModal')">×</button>
@@ -421,7 +347,7 @@ footer{text-align:center;padding:25px;color:var(--muted);border-top:1px solid va
         </div>
 
         <div class="panel hidden" id="adminPanel">
-          <h2>پنل مدیریت</h2>
+          <h2>مدیریت معاملات</h2>
           <div id="adminOrdersList"></div>
         </div>
       </div>
@@ -429,126 +355,47 @@ footer{text-align:center;padding:25px;color:var(--muted);border-top:1px solid va
   </div>
 </div>
 
-<!-- CHAT -->
-<div class="modal" id="chatModal">
-  <div class="modal-box">
-    <div class="modal-head">
-      <h2>گفتگو درباره معامله</h2>
-      <button class="close" onclick="closeModal('chatModal')">×</button>
-    </div>
-
-    <div class="notice" id="chatOrderInfo"></div>
-
-    <div class="chat" id="chatMessages"></div>
-
-    <div class="chat-form">
-      <input id="chatInput" placeholder="پیام خود را بنویس...">
-      <button class="btn primary" onclick="sendMessage()">ارسال</button>
-    </div>
-  </div>
-</div>
-
 <div class="toast" id="toast"></div>
 
 <script>
-const KEYS = {
-  users: "efm_users",
-  currentUser: "efm_current_user",
-  accounts: "efm_accounts",
-  orders: "efm_orders"
-};
+/* ================= SUPABASE ================= */
 
-const defaultAccounts = [
-  {
-    id: 101,
-    seller: "demo",
-    title: "اکانت Epic با مسی و رونالدو",
-    power: "3200",
-    players: "Messi, Ronaldo, Neymar",
-    coins: "5000 Coins",
-    price: 3500000,
-    description: "اکانت قوی با بازیکنان ویژه.",
-    icon: "⚽",
-    createdAt: Date.now() - 300000
-  },
-  {
-    id: 102,
-    seller: "demo",
-    title: "اکانت Epic مسی",
-    power: "3100",
-    players: "Epic Messi, Mbappe",
-    coins: "2500 Coins",
-    price: 2200000,
-    description: "مناسب برای علاقه‌مندان مسی.",
-    icon: "🏆",
-    createdAt: Date.now() - 200000
-  },
-  {
-    id: 103,
-    seller: "demo",
-    title: "اکانت قدیمی فول بازیکن",
-    power: "3350",
-    players: "Ronaldo, Messi, Beckham",
-    coins: "8000 Coins",
-    price: 5200000,
-    description: "اکانت قدیمی با ترکیب قوی.",
-    icon: "🎮",
-    createdAt: Date.now() - 100000
+const SUPABASE_URL = "https://ebwceuhlavkajhsfubhh.supabase.co";
+const SUPABASE_KEY = "sb_publishable_0Dp87kfBdmhTeaD8d6xKFw_HL1IW9Vc";
+
+const API = `${SUPABASE_URL}/rest/v1`;
+
+async function supabaseRequest(table, options = {}){
+  const response = await fetch(`${API}/${table}`, {
+    method: options.method || "GET",
+    headers: {
+      "apikey": SUPABASE_KEY,
+      "Authorization": `Bearer ${SUPABASE_KEY}`,
+      "Content-Type": "application/json",
+      "Prefer": options.prefer || "return=representation",
+      ...(options.headers || {})
+    },
+    body: options.body ? JSON.stringify(options.body) : undefined
+  });
+
+  if(!response.ok){
+    const text = await response.text();
+    console.error("Supabase error:", text);
+    throw new Error(text);
   }
-];
 
-function getData(key, fallback){
-  try{
-    const value = JSON.parse(localStorage.getItem(key));
-    return value ?? fallback;
-  }catch{
-    return fallback;
-  }
+  const text = await response.text();
+  return text ? JSON.parse(text) : null;
 }
 
-function setData(key, value){
-  localStorage.setItem(key, JSON.stringify(value));
-}
+/* ================= STATE ================= */
 
-function getUsers(){
-  const users = getData(KEYS.users, []);
-  if(!users.some(u => u.username === "admin")){
-    users.push({
-      id: 1,
-      username: "admin",
-      phone: "",
-      password: "1234",
-      role: "admin"
-    });
-    setData(KEYS.users, users);
-  }
-  return users;
-}
+let currentUser = JSON.parse(localStorage.getItem("efm_current_user") || "null");
+let allAccounts = [];
+let allOrders = [];
+let selectedAccountId = null;
 
-function getAccounts(){
-  const saved = getData(KEYS.accounts, null);
-  if(!saved){
-    setData(KEYS.accounts, defaultAccounts);
-    return defaultAccounts;
-  }
-  return saved;
-}
-
-function getOrders(){
-  return getData(KEYS.orders, []);
-}
-
-function getCurrentUser(){
-  return getData(KEYS.currentUser, null);
-}
-
-function setCurrentUser(user){
-  setData(KEYS.currentUser, user);
-}
-
-function formatPrice(n){
-  return Number(n).toLocaleString("fa-IR") + " تومان";
-}
+/* ================= HELPERS ================= */
 
 function escapeHTML(text){
   return String(text ?? "")
@@ -557,6 +404,10 @@ function escapeHTML(text){
     .replace(/>/g,"&gt;")
     .replace(/"/g,"&quot;")
     .replace(/'/g,"&#039;");
+}
+
+function formatPrice(n){
+  return Number(n || 0).toLocaleString("fa-IR") + " تومان";
 }
 
 function openModal(id){
@@ -571,18 +422,20 @@ function toast(text){
   const el = document.getElementById("toast");
   el.textContent = text;
   el.classList.add("show");
-  setTimeout(() => el.classList.remove("show"), 3000);
+  setTimeout(() => el.classList.remove("show"),3000);
+}
+
+function setCurrentUser(user){
+  currentUser = user;
+  localStorage.setItem("efm_current_user", JSON.stringify(user));
 }
 
 function updateNav(){
-  const user = getCurrentUser();
   const nav = document.getElementById("navActions");
 
-  if(user){
+  if(currentUser){
     nav.innerHTML = `
-      <button class="btn outline" onclick="openDashboard()">
-        👤 ${escapeHTML(user.username)}
-      </button>
+      <button class="btn outline" onclick="openDashboard()">👤 ${escapeHTML(currentUser.username)}</button>
       <button class="btn primary" onclick="openSell()">+ فروش اکانت</button>
     `;
   }else{
@@ -593,44 +446,68 @@ function updateNav(){
   }
 }
 
-function updateStats(){
-  const accounts = getAccounts();
-  const orders = getOrders();
+/* ================= LOAD DATA ================= */
 
-  document.getElementById("statAccounts").textContent =
-    accounts.length.toLocaleString("fa-IR");
-
-  document.getElementById("statOrders").textContent =
-    orders.length.toLocaleString("fa-IR");
+async function loadAccounts(){
+  try{
+    const data = await supabaseRequest("accounts?select=*&order=created_at.desc");
+    allAccounts = Array.isArray(data) ? data : [];
+    renderAccounts();
+    updateStats();
+  }catch(error){
+    console.error(error);
+    document.getElementById("accountsList").innerHTML =
+      `<div class="empty">خطا در دریافت آگهی‌ها</div>`;
+  }
 }
 
+async function loadOrders(){
+  try{
+    const data = await supabaseRequest("orders?select=*&order=created_at.desc");
+    allOrders = Array.isArray(data) ? data : [];
+    updateStats();
+  }catch(error){
+    console.error(error);
+  }
+}
+
+function updateStats(){
+  document.getElementById("statAccounts").textContent =
+    allAccounts.length.toLocaleString("fa-IR");
+
+  document.getElementById("statOrders").textContent =
+    allOrders.length.toLocaleString("fa-IR");
+}
+
+/* ================= ACCOUNTS ================= */
+
 function renderAccounts(){
-  let accounts = [...getAccounts()];
+  let accounts = [...allAccounts];
+
   const search = document.getElementById("search").value.trim().toLowerCase();
   const sort = document.getElementById("sort").value;
 
   if(search){
     accounts = accounts.filter(a =>
-      `${a.title} ${a.power} ${a.players} ${a.coins}`
+      `${a.title || ""} ${a.power || ""} ${a.players || ""} ${a.coins || ""}`
       .toLowerCase()
       .includes(search)
     );
   }
 
-  if(sort === "low") accounts.sort((a,b) => a.price - b.price);
-  if(sort === "high") accounts.sort((a,b) => b.price - a.price);
-  if(sort === "new") accounts.sort((a,b) => b.createdAt - a.createdAt);
+  if(sort === "low") accounts.sort((a,b) => Number(a.price)-Number(b.price));
+  if(sort === "high") accounts.sort((a,b) => Number(b.price)-Number(a.price));
 
   const list = document.getElementById("accountsList");
 
   if(!accounts.length){
-    list.innerHTML = `<div class="empty">آگهی پیدا نشد.</div>`;
+    list.innerHTML = `<div class="empty">هنوز آگهی‌ای ثبت نشده است.</div>`;
     return;
   }
 
   list.innerHTML = accounts.map(a => `
     <div class="card">
-      <div class="card-img">${escapeHTML(a.icon || "⚽")}</div>
+      <div class="card-img">⚽</div>
       <div class="card-body">
         <h3>${escapeHTML(a.title)}</h3>
 
@@ -640,7 +517,7 @@ function renderAccounts(){
             <strong>${escapeHTML(a.power)}</strong>
           </div>
           <div class="info">
-            <small>کوین / GP</small>
+            <small>Coins / GP</small>
             <strong>${escapeHTML(a.coins)}</strong>
           </div>
           <div class="info">
@@ -659,13 +536,14 @@ function renderAccounts(){
         </div>
 
         <div class="card-actions">
-          <button class="btn small outline" onclick="showDetails(${a.id})">جزئیات</button>
           <button class="btn small primary" onclick="openBuy(${a.id})">خرید</button>
         </div>
       </div>
     </div>
   `).join("");
 }
+
+/* ================= AUTH ================= */
 
 function switchAuth(type){
   const login = type === "login";
@@ -677,79 +555,98 @@ function switchAuth(type){
   document.getElementById("registerTab").classList.toggle("active", !login);
 }
 
-function register(){
+async function register(){
   const username = document.getElementById("registerUsername").value.trim();
   const phone = document.getElementById("registerPhone").value.trim();
   const password = document.getElementById("registerPassword").value.trim();
 
   if(username.length < 3 || password.length < 4){
-    toast("نام کاربری حداقل ۳ و رمز حداقل ۴ کاراکتر باشد.");
+    toast("نام کاربری و رمز عبور معتبر وارد کن.");
     return;
   }
 
-  const users = getUsers();
+  try{
+    const exists = await supabaseRequest(
+      `users?username=eq.${encodeURIComponent(username)}&select=id`
+    );
 
-  if(users.some(u => u.username.toLowerCase() === username.toLowerCase())){
-    toast("این نام کاربری قبلاً ثبت شده است.");
-    return;
+    if(exists.length){
+      toast("این نام کاربری قبلاً ثبت شده است.");
+      return;
+    }
+
+    const result = await supabaseRequest("users", {
+      method:"POST",
+      body:{
+        username,
+        phone,
+        password,
+        role:"user"
+      }
+    });
+
+    const user = result[0];
+
+    setCurrentUser({
+      id:user.id,
+      username:user.username,
+      role:user.role
+    });
+
+    closeModal("authModal");
+    updateNav();
+    toast("ثبت‌نام با موفقیت انجام شد.");
+
+  }catch(error){
+    console.error(error);
+    toast("خطا در ثبت‌نام. ساختار جدول users را بررسی کن.");
   }
-
-  const user = {
-    id: Date.now(),
-    username,
-    phone,
-    password,
-    role: "user"
-  };
-
-  users.push(user);
-  setData(KEYS.users, users);
-
-  setCurrentUser({
-    id: user.id,
-    username: user.username,
-    role: user.role
-  });
-
-  closeModal("authModal");
-  updateNav();
-  toast("ثبت‌نام با موفقیت انجام شد.");
 }
 
-function login(){
+async function login(){
   const username = document.getElementById("loginUsername").value.trim();
   const password = document.getElementById("loginPassword").value.trim();
 
-  const user = getUsers().find(u =>
-    u.username === username &&
-    u.password === password
-  );
+  try{
+    const result = await supabaseRequest(
+      `users?username=eq.${encodeURIComponent(username)}&password=eq.${encodeURIComponent(password)}&select=*`
+    );
 
-  if(!user){
-    toast("نام کاربری یا رمز عبور اشتباه است.");
-    return;
+    if(!result.length){
+      toast("نام کاربری یا رمز عبور اشتباه است.");
+      return;
+    }
+
+    const user = result[0];
+
+    setCurrentUser({
+      id:user.id,
+      username:user.username,
+      role:user.role || "user"
+    });
+
+    closeModal("authModal");
+    updateNav();
+    toast("خوش آمدی " + user.username);
+
+  }catch(error){
+    console.error(error);
+    toast("خطا در ورود.");
   }
-
-  setCurrentUser({
-    id: user.id,
-    username: user.username,
-    role: user.role
-  });
-
-  closeModal("authModal");
-  updateNav();
-  toast("خوش آمدی " + user.username);
 }
 
 function logout(){
-  localStorage.removeItem(KEYS.currentUser);
+  localStorage.removeItem("efm_current_user");
+  currentUser = null;
   closeModal("dashboardModal");
   updateNav();
   toast("از حساب خارج شدی.");
 }
 
+/* ================= SELL ================= */
+
 function openSell(){
-  if(!getCurrentUser()){
+  if(!currentUser){
     toast("اول وارد حساب شو.");
     openModal("authModal");
     return;
@@ -758,7 +655,9 @@ function openSell(){
   openModal("sellModal");
 }
 
-function addAccount(){
+async function addAccount(){
+  if(!currentUser) return;
+
   const title = document.getElementById("sellTitle").value.trim();
   const power = document.getElementById("sellPower").value.trim();
   const players = document.getElementById("sellPlayers").value.trim();
@@ -766,86 +665,59 @@ function addAccount(){
   const price = Number(document.getElementById("sellPrice").value);
   const description = document.getElementById("sellDescription").value.trim();
 
-  if(!title || !power || !players || !price || price <= 0){
+  if(!title || !power || !players || !price){
     toast("اطلاعات ضروری را کامل وارد کن.");
     return;
   }
 
-  const user = getCurrentUser();
-  const accounts = getAccounts();
+  try{
+    await supabaseRequest("accounts",{
+      method:"POST",
+      body:{
+        seller:currentUser.username,
+        title,
+        power,
+        players,
+        coins:coins || "نامشخص",
+        price,
+        description:description || ""
+      }
+    });
 
-  accounts.unshift({
-    id: Date.now(),
-    seller: user.username,
-    title,
-    power,
-    players,
-    coins: coins || "نامشخص",
-    price,
-    description: description || "توضیحی ثبت نشده است.",
-    icon: "⚽",
-    createdAt: Date.now()
-  });
+    [
+      "sellTitle",
+      "sellPower",
+      "sellPlayers",
+      "sellCoins",
+      "sellPrice",
+      "sellDescription"
+    ].forEach(id => document.getElementById(id).value="");
 
-  setData(KEYS.accounts, accounts);
+    closeModal("sellModal");
+    await loadAccounts();
 
-  [
-    "sellTitle",
-    "sellPower",
-    "sellPlayers",
-    "sellCoins",
-    "sellPrice",
-    "sellDescription"
-  ].forEach(id => document.getElementById(id).value = "");
+    toast("آگهی با موفقیت ثبت شد.");
 
-  closeModal("sellModal");
-  renderAccounts();
-  updateStats();
-  toast("آگهی با موفقیت ثبت شد.");
+  }catch(error){
+    console.error(error);
+    toast("خطا در ثبت آگهی.");
+  }
 }
 
-function showDetails(id){
-  const account = getAccounts().find(a => a.id === id);
-
-  if(!account) return;
-
-  document.getElementById("detailsContent").innerHTML = `
-    <div class="card-img" style="border-radius:12px">${escapeHTML(account.icon)}</div>
-    <h2>${escapeHTML(account.title)}</h2>
-
-    <div class="info-grid">
-      <div class="info"><small>قدرت تیم</small><strong>${escapeHTML(account.power)}</strong></div>
-      <div class="info"><small>Coins / GP</small><strong>${escapeHTML(account.coins)}</strong></div>
-      <div class="info"><small>بازیکنان</small><strong>${escapeHTML(account.players)}</strong></div>
-      <div class="info"><small>قیمت</small><strong style="color:var(--green)">${formatPrice(account.price)}</strong></div>
-    </div>
-
-    <div class="notice" style="margin-top:15px">
-      ${escapeHTML(account.description)}
-    </div>
-
-    <button class="btn primary" style="width:100%" onclick="closeModal('detailsModal');openBuy(${account.id})">
-      ثبت درخواست خرید
-    </button>
-  `;
-
-  openModal("detailsModal");
-}
-
-let selectedAccountId = null;
+/* ================= BUY ================= */
 
 function openBuy(id){
-  if(!getCurrentUser()){
+  if(!currentUser){
     toast("برای خرید ابتدا وارد حساب شو.");
     openModal("authModal");
     return;
   }
 
-  const account = getAccounts().find(a => a.id === id);
+  const account = allAccounts.find(a => String(a.id) === String(id));
 
   if(!account) return;
 
-  if(account.seller === getCurrentUser().username){
+  if(account.seller === currentUser.username){
     toast("نمی‌توانی آگهی خودت را بخری.");
     return;
   }
@@ -854,263 +726,161 @@ function openBuy(id){
 
   document.getElementById("buyInfo").innerHTML = `
     <strong>${escapeHTML(account.title)}</strong><br>
-    مبلغ آگهی: ${formatPrice(account.price)}
+    مبلغ: ${formatPrice(account.price)}
   `;
 
   openModal("buyModal");
 }
 
-function createOrder(){
-  const user = getCurrentUser();
-  const account = getAccounts().find(a => a.id === selectedAccountId);
+async function createOrder(){
+  const account = allAccounts.find(a =>
+    String(a.id) === String(selectedAccountId)
+  );
 
-  if(!user || !account){
+  if(!currentUser || !account){
     toast("خطا در ثبت درخواست.");
     return;
   }
 
   const message = document.getElementById("buyMessage").value.trim();
-  const orders = getOrders();
 
-  if(orders.some(o =>
-    o.accountId === account.id &&
-    o.buyer === user.username &&
-    o.status !== "لغو شده" &&
-    o.status !== "تکمیل شده"
-  )){
-    toast("برای این اکانت قبلاً درخواست فعال داری.");
-    return;
+  try{
+    await supabaseRequest("orders",{
+      method:"POST",
+      body:{
+        account_id:account.id,
+        account_title:account.title,
+        price:account.price,
+        buyer:currentUser.username,
+        seller:account.seller,
+        status:"در انتظار بررسی",
+        buyer_message:message
+      }
+    });
+
+    document.getElementById("buyMessage").value="";
+    closeModal("buyModal");
+
+    await loadOrders();
+
+    toast("درخواست معامله ثبت شد.");
+
+  }catch(error){
+    console.error(error);
+    toast("خطا در ثبت درخواست معامله.");
   }
-
-  orders.unshift({
-    id: Date.now(),
-    accountId: account.id,
-    accountTitle: account.title,
-    price: account.price,
-    buyer: user.username,
-    seller: account.seller,
-    status: "در انتظار بررسی",
-    createdAt: Date.now(),
-    buyerMessage: message,
-    messages: message ? [{
-      user: user.username,
-      text: message,
-      time: Date.now()
-    }] : []
-  });
-
-  setData(KEYS.orders, orders);
-
-  document.getElementById("buyMessage").value = "";
-  closeModal("buyModal");
-
-  updateStats();
-  toast("درخواست معامله ثبت شد.");
 }
 
-function openDashboard(){
-  const user = getCurrentUser();
+/* ================= DASHBOARD ================= */
 
-  if(!user){
+function openDashboard(){
+  if(!currentUser){
     openModal("authModal");
     return;
   }
 
   document.getElementById("dashboardTitle").textContent =
-    user.role === "admin"
+    currentUser.role === "admin"
       ? "پنل مدیریت"
-      : "پنل کاربری " + user.username;
+      : "پنل کاربری " + currentUser.username;
 
   document.getElementById("adminButton").classList.toggle(
     "hidden",
-    user.role !== "admin"
+    currentUser.role !== "admin"
   );
 
   renderOrders();
   renderMyAds();
   renderAdminOrders();
 
-  showPanel("orders", document.querySelector(".sidebar button"));
-
   openModal("dashboardModal");
 }
 
-function showPanel(name, button){
-  ["orders","myads","admin"].forEach(id => {
-    document.getElementById(id + "Panel").classList.toggle(
-      "hidden",
-      id !== name
-    );
+function showPanel(name,button){
+  ["orders","myads","admin"].forEach(id=>{
+    document.getElementById(id+"Panel").classList.toggle("hidden",id!==name);
   });
 
-  document.querySelectorAll(".sidebar button").forEach(b =>
-    b.classList.remove("active")
-  );
+  document.querySelectorAll(".sidebar button").forEach(b=>{
+    b.classList.remove("active");
+  });
 
   if(button) button.classList.add("active");
 }
 
 function statusClass(status){
-  if(status === "تکمیل شده") return "done";
-  if(status === "لغو شده") return "cancel";
+  if(status==="تکمیل شده") return "done";
+  if(status==="لغو شده") return "cancel";
   return "";
 }
 
 function renderOrders(){
-  const user = getCurrentUser();
-  const orders = getOrders().filter(o =>
-    o.buyer === user.username ||
-    o.seller === user.username
+  const orders = allOrders.filter(o =>
+    o.buyer===currentUser.username ||
+    o.seller===currentUser.username
   );
 
-  const list = document.getElementById("ordersList");
+  const list=document.getElementById("ordersList");
 
   if(!orders.length){
-    list.innerHTML = `<div class="empty">هنوز معامله‌ای نداری.</div>`;
+    list.innerHTML=`<div class="empty">هنوز معامله‌ای نداری.</div>`;
     return;
   }
 
-  list.innerHTML = orders.map(o => `
+  list.innerHTML=orders.map(o=>`
     <div class="order">
       <div class="order-top">
-        <span class="order-title">${escapeHTML(o.accountTitle)}</span>
+        <span class="order-title">${escapeHTML(o.account_title)}</span>
         <span class="status ${statusClass(o.status)}">${escapeHTML(o.status)}</span>
       </div>
 
-      <small>
-        خریدار: ${escapeHTML(o.buyer)} | فروشنده: ${escapeHTML(o.seller)}
-      </small>
+      <small>خریدار: ${escapeHTML(o.buyer)} | فروشنده: ${escapeHTML(o.seller)}</small>
+      <small>مبلغ: ${formatPrice(o.price)}</small>
 
-      <small>
-        مبلغ: ${formatPrice(o.price)}
-      </small>
+      ${
+        currentUser.username===o.seller && o.status==="در انتظار بررسی"
+        ? `<button class="btn small primary" style="margin-top:10px" onclick="changeOrderStatus(${o.id},'در حال انتقال')">قبول معامله</button>`
+        : ""
+      }
 
-      <div style="margin-top:10px;display:flex;gap:7px;flex-wrap:wrap">
-        <button class="btn small outline" onclick="openChat(${o.id})">💬 گفتگو</button>
-
-        ${
-          user.username === o.seller && o.status === "در انتظار بررسی"
-            ? `<button class="btn small primary" onclick="changeOrderStatus(${o.id},'در حال انتقال')">قبول معامله</button>`
-            : ""
-        }
-
-        ${
-          user.username === o.buyer && o.status === "در حال انتقال"
-            ? `<button class="btn small primary" onclick="changeOrderStatus(${o.id},'تکمیل شده')">تأیید دریافت</button>`
-            : ""
-        }
-
-        ${
-          o.status !== "تکمیل شده" && o.status !== "لغو شده"
-            ? `<button class="btn small danger" onclick="changeOrderStatus(${o.id},'لغو شده')">لغو</button>`
-            : ""
-        }
-      </div>
+      ${
+        currentUser.username===o.buyer && o.status==="در حال انتقال"
+        ? `<button class="btn small primary" style="margin-top:10px" onclick="changeOrderStatus(${o.id},'تکمیل شده')">تأیید دریافت</button>`
+        : ""
+      }
     </div>
   `).join("");
 }
 
 function renderMyAds(){
-  const user = getCurrentUser();
-  const accounts = getAccounts().filter(a => a.seller === user.username);
-  const list = document.getElementById("myAdsList");
+  const accounts=allAccounts.filter(a=>a.seller===currentUser.username);
+  const list=document.getElementById("myAdsList");
 
   if(!accounts.length){
-    list.innerHTML = `<div class="empty">هنوز آگهی ثبت نکردی.</div>`;
+    list.innerHTML=`<div class="empty">هنوز آگهی ثبت نکردی.</div>`;
     return;
   }
 
-  list.innerHTML = accounts.map(a => `
+  list.innerHTML=accounts.map(a=>`
     <div class="order">
       <div class="order-top">
         <span class="order-title">${escapeHTML(a.title)}</span>
         <b style="color:var(--green)">${formatPrice(a.price)}</b>
       </div>
-
       <small>قدرت تیم: ${escapeHTML(a.power)}</small>
-
-      <div style="margin-top:10px">
-        <button class="btn small danger" onclick="deleteAccount(${a.id})">
-          حذف آگهی
-        </button>
-      </div>
     </div>
   `).join("");
 }
 
-function deleteAccount(id){
-  if(!confirm("آگهی حذف شود؟")) return;
-
-  const user = getCurrentUser();
-  const accounts = getAccounts();
-  const account = accounts.find(a => a.id === id);
-
-  if(!account || account.seller !== user.username){
-    toast("اجازه حذف این آگهی را نداری.");
-    return;
-  }
-
-  setData(KEYS.accounts, accounts.filter(a => a.id !== id));
-
-  renderAccounts();
-  renderMyAds();
-  updateStats();
-  toast("آگهی حذف شد.");
-}
-
-function changeOrderStatus(id, status){
-  const orders = getOrders();
-  const order = orders.find(o => o.id === id);
-
-  if(!order) return;
-
-  const user = getCurrentUser();
-
-  if(
-    user.role !== "admin" &&
-    user.username !== order.buyer &&
-    user.username !== order.seller
-  ){
-    toast("اجازه انجام این کار را نداری.");
-    return;
-  }
-
-  order.status = status;
-
-  if(!Array.isArray(order.messages)) order.messages = [];
-
-  order.messages.push({
-    user: "system",
-    text: "وضعیت معامله به «" + status + "» تغییر کرد.",
-    time: Date.now()
-  });
-
-  setData(KEYS.orders, orders);
-
-  renderOrders();
-  renderAdminOrders();
-  updateStats();
-
-  toast("وضعیت معامله تغییر کرد.");
-}
-
 function renderAdminOrders(){
-  const user = getCurrentUser();
+  if(!currentUser || currentUser.role!=="admin") return;
 
-  if(!user || user.role !== "admin") return;
+  const list=document.getElementById("adminOrdersList");
 
-  const orders = getOrders();
-  const list = document.getElementById("adminOrdersList");
-
-  if(!orders.length){
-    list.innerHTML = `<div class="empty">هیچ معامله‌ای وجود ندارد.</div>`;
-    return;
-  }
-
-  list.innerHTML = orders.map(o => `
+  list.innerHTML=allOrders.map(o=>`
     <div class="order">
       <div class="order-top">
-        <span class="order-title">${escapeHTML(o.accountTitle)}</span>
+        <span class="order-title">${escapeHTML(o.account_title)}</span>
         <span class="status ${statusClass(o.status)}">${escapeHTML(o.status)}</span>
       </div>
 
@@ -1118,117 +888,47 @@ function renderAdminOrders(){
       <small>فروشنده: ${escapeHTML(o.seller)}</small>
       <small>مبلغ: ${formatPrice(o.price)}</small>
 
-      <div style="display:flex;gap:7px;margin-top:10px;flex-wrap:wrap">
-        <button class="btn small outline" onclick="openChat(${o.id})">گفتگو</button>
+      <div style="display:flex;gap:7px;margin-top:10px">
         <button class="btn small primary" onclick="changeOrderStatus(${o.id},'در حال انتقال')">در حال انتقال</button>
         <button class="btn small primary" onclick="changeOrderStatus(${o.id},'تکمیل شده')">تکمیل</button>
-        <button class="btn small danger" onclick="changeOrderStatus(${o.id},'لغو شده')">لغو</button>
       </div>
     </div>
-  `).join("");
+  `).join("") || `<div class="empty">معامله‌ای وجود ندارد.</div>`;
 }
 
-let currentChatOrderId = null;
+async function changeOrderStatus(id,status){
+  try{
+    await supabaseRequest(`orders?id=eq.${id}`,{
+      method:"PATCH",
+      body:{status}
+    });
 
-function openChat(orderId){
-  currentChatOrderId = orderId;
-  const order = getOrders().find(o => o.id === orderId);
+    await loadOrders();
+    renderOrders();
+    renderAdminOrders();
 
-  if(!order) return;
+    toast("وضعیت معامله تغییر کرد.");
 
-  document.getElementById("chatOrderInfo").innerHTML = `
-    <strong>${escapeHTML(order.accountTitle)}</strong><br>
-    وضعیت: ${escapeHTML(order.status)}
-  `;
-
-  renderChat();
-  openModal("chatModal");
-}
-
-function renderChat(){
-  const order = getOrders().find(o => o.id === currentChatOrderId);
-  const user = getCurrentUser();
-  const box = document.getElementById("chatMessages");
-
-  if(!order || !user) return;
-
-  if(!Array.isArray(order.messages) || !order.messages.length){
-    box.innerHTML = `<div class="empty">هنوز پیامی ارسال نشده.</div>`;
-    return;
+  }catch(error){
+    console.error(error);
+    toast("خطا در تغییر وضعیت.");
   }
-
-  box.innerHTML = order.messages.map(m => {
-    const isMe = m.user === user.username;
-    const name =
-      m.user === "system"
-        ? "سیستم"
-        : escapeHTML(m.user);
-
-    return `
-      <div class="msg ${isMe ? "me" : "other"}">
-        <small style="opacity:.7">${name}</small><br>
-        ${escapeHTML(m.text)}
-      </div>
-    `;
-  }).join("");
-
-  box.scrollTop = box.scrollHeight;
 }
 
-function sendMessage(){
-  const text = document.getElementById("chatInput").value.trim();
+/* ================= START ================= */
 
-  if(!text) return;
-
-  const orders = getOrders();
-  const order = orders.find(o => o.id === currentChatOrderId);
-  const user = getCurrentUser();
-
-  if(!order || !user) return;
-
-  const allowed =
-    user.role === "admin" ||
-    order.buyer === user.username ||
-    order.seller === user.username;
-
-  if(!allowed){
-    toast("اجازه ارسال پیام نداری.");
-    return;
-  }
-
-  if(!Array.isArray(order.messages)) order.messages = [];
-
-  order.messages.push({
-    user: user.username,
-    text,
-    time: Date.now()
-  });
-
-  setData(KEYS.orders, orders);
-
-  document.getElementById("chatInput").value = "";
-
-  renderChat();
-}
-
-document.getElementById("chatInput").addEventListener("keydown", e => {
-  if(e.key === "Enter"){
-    e.preventDefault();
-    sendMessage();
-  }
-});
-
-window.addEventListener("click", e => {
+window.addEventListener("click",e=>{
   if(e.target.classList.contains("modal")){
     e.target.classList.remove("show");
   }
 });
 
-getUsers();
-getAccounts();
 updateNav();
-updateStats();
-renderAccounts();
+
+(async()=>{
+  await loadAccounts();
+  await loadOrders();
+})();
 </script>
 
 </body>
