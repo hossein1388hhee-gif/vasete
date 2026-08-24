@@ -454,23 +454,21 @@ footer{
   display:block;
   margin-top:8px
 }
-.order-actions{
-  display:flex;
-  gap:7px;
-  flex-wrap:wrap;
-  margin-top:10px
-}
 
 .toast{
   position:fixed;
   left:18px;
   bottom:18px;
+  max-width:calc(100% - 36px);
   background:#183221;
   border:1px solid var(--green);
   padding:13px 17px;
   border-radius:10px;
   display:none;
-  z-index:2000
+  z-index:2000;
+  direction:ltr;
+  text-align:left;
+  word-break:break-word
 }
 .toast.show{display:block}
 
@@ -501,23 +499,37 @@ footer{
 
 <header>
   <div class="nav">
-    <div class="logo">eFootball <span>Market</span></div>
+
+    <div class="logo">
+      eFootball <span>Market</span>
+    </div>
 
     <div class="nav-actions" id="navActions">
-      <button class="btn outline" onclick="openModal('authModal')">
+
+      <button
+        class="btn outline"
+        onclick="openModal('authModal')"
+      >
         ورود / ثبت‌نام
       </button>
 
-      <button class="btn primary" onclick="openSell()">
+      <button
+        class="btn primary"
+        onclick="openSell()"
+      >
         + فروش اکانت
       </button>
+
     </div>
+
   </div>
 </header>
 
 <section class="hero">
 
-  <span class="badge">⚽ بازار واسطه‌ای اکانت eFootball</span>
+  <span class="badge">
+    ⚽ بازار واسطه‌ای اکانت eFootball
+  </span>
 
   <h1>
     خرید و فروش
@@ -530,17 +542,25 @@ footer{
   </p>
 
   <div class="hero-actions">
-    <button class="btn primary"
-      onclick="document.getElementById('market').scrollIntoView({behavior:'smooth'})">
+
+    <button
+      class="btn primary"
+      onclick="document.getElementById('market').scrollIntoView({behavior:'smooth'})"
+    >
       مشاهده آگهی‌ها
     </button>
 
-    <button class="btn outline" onclick="openSell()">
+    <button
+      class="btn outline"
+      onclick="openSell()"
+    >
       ثبت آگهی فروش
     </button>
+
   </div>
 
   <div class="stats">
+
     <div class="stat">
       <strong id="statAccounts">۰</strong>
       <span>آگهی فعال</span>
@@ -555,6 +575,7 @@ footer{
       <strong>24/7</strong>
       <span>پیگیری سفارش</span>
     </div>
+
   </div>
 
 </section>
@@ -574,7 +595,10 @@ footer{
       oninput="renderAccounts()"
     >
 
-    <select id="sort" onchange="renderAccounts()">
+    <select
+      id="sort"
+      onchange="renderAccounts()"
+    >
       <option value="new">جدیدترین</option>
       <option value="low">ارزان‌ترین</option>
       <option value="high">گران‌ترین</option>
@@ -582,7 +606,10 @@ footer{
 
   </div>
 
-  <div class="grid" id="accountsList"></div>
+  <div
+    class="grid"
+    id="accountsList"
+  ></div>
 
   <div class="section-head">
     <h2>روند معامله</h2>
@@ -605,34 +632,54 @@ footer{
     <div class="step">
       <div class="step-num">3</div>
       <h3>تأیید نهایی</h3>
-      <p>پس از انتقال و بررسی، معامله تکمیل می‌شود.</p>
+      <p>پس از انتقال، معامله تکمیل می‌شود.</p>
     </div>
 
   </div>
 
 </main>
 
-<footer>© 2026 eFootball Market</footer>
+<footer>
+  © 2026 eFootball Market
+</footer>
 
+<!-- ================= AUTH ================= -->
 
-<!-- AUTH -->
-
-<div class="modal" id="authModal">
+<div
+  class="modal"
+  id="authModal"
+>
 
   <div class="modal-box">
 
     <div class="modal-head">
+
       <h2>حساب کاربری</h2>
-      <button class="close" onclick="closeModal('authModal')">×</button>
+
+      <button
+        class="close"
+        onclick="closeModal('authModal')"
+      >
+        ×
+      </button>
+
     </div>
 
     <div class="tabs">
 
-      <button class="tab active" id="loginTab" onclick="switchAuth('login')">
+      <button
+        class="tab active"
+        id="loginTab"
+        onclick="switchAuth('login')"
+      >
         ورود
       </button>
 
-      <button class="tab" id="registerTab" onclick="switchAuth('register')">
+      <button
+        class="tab"
+        id="registerTab"
+        onclick="switchAuth('register')"
+      >
         ثبت‌نام
       </button>
 
@@ -647,16 +694,26 @@ footer{
 
       <div class="form-group">
         <label>رمز عبور</label>
-        <input id="loginPassword" type="password">
+        <input
+          id="loginPassword"
+          type="password"
+        >
       </div>
 
-      <button class="btn primary" style="width:100%" onclick="login()">
+      <button
+        class="btn primary"
+        style="width:100%"
+        onclick="login()"
+      >
         ورود
       </button>
 
     </div>
 
-    <div id="registerForm" class="hidden">
+    <div
+      id="registerForm"
+      class="hidden"
+    >
 
       <div class="form-group">
         <label>نام کاربری</label>
@@ -670,28 +727,46 @@ footer{
 
       <div class="form-group">
         <label>رمز عبور</label>
-        <input id="registerPassword" type="password">
+        <input
+          id="registerPassword"
+          type="password"
+        >
       </div>
 
-      <button class="btn primary" style="width:100%" onclick="register()">
+      <button
+        class="btn primary"
+        style="width:100%"
+        onclick="register()"
+      >
         ساخت حساب
       </button>
 
     </div>
 
   </div>
+
 </div>
 
+<!-- ================= SELL ================= -->
 
-<!-- SELL -->
-
-<div class="modal" id="sellModal">
+<div
+  class="modal"
+  id="sellModal"
+>
 
   <div class="modal-box">
 
     <div class="modal-head">
+
       <h2>ثبت آگهی فروش</h2>
-      <button class="close" onclick="closeModal('sellModal')">×</button>
+
+      <button
+        class="close"
+        onclick="closeModal('sellModal')"
+      >
+        ×
+      </button>
+
     </div>
 
     <div class="form-group">
@@ -716,7 +791,10 @@ footer{
 
     <div class="form-group">
       <label>قیمت</label>
-      <input id="sellPrice" type="number">
+      <input
+        id="sellPrice"
+        type="number"
+      >
     </div>
 
     <div class="form-group">
@@ -724,72 +802,126 @@ footer{
       <textarea id="sellDescription"></textarea>
     </div>
 
-    <button class="btn primary" style="width:100%" onclick="addAccount()">
+    <button
+      class="btn primary"
+      style="width:100%"
+      onclick="addAccount()"
+    >
       ثبت آگهی
     </button>
 
   </div>
+
 </div>
 
+<!-- ================= BUY ================= -->
 
-<!-- BUY -->
-
-<div class="modal" id="buyModal">
+<div
+  class="modal"
+  id="buyModal"
+>
 
   <div class="modal-box">
 
     <div class="modal-head">
+
       <h2>درخواست خرید</h2>
-      <button class="close" onclick="closeModal('buyModal')">×</button>
+
+      <button
+        class="close"
+        onclick="closeModal('buyModal')"
+      >
+        ×
+      </button>
+
     </div>
 
-    <div class="notice" id="buyInfo"></div>
+    <div
+      class="notice"
+      id="buyInfo"
+    ></div>
 
     <div class="form-group">
       <label>پیام برای فروشنده</label>
       <textarea id="buyMessage"></textarea>
     </div>
 
-    <button class="btn primary" style="width:100%" onclick="createOrder()">
+    <button
+      class="btn primary"
+      style="width:100%"
+      onclick="createOrder()"
+    >
       ثبت درخواست معامله
     </button>
 
   </div>
+
 </div>
 
+<!-- ================= DASHBOARD ================= -->
 
-<!-- DASHBOARD -->
+<div
+  class="modal"
+  id="dashboardModal"
+>
 
-<div class="modal" id="dashboardModal">
-
-  <div class="modal-box" style="width:min(900px,100%)">
+  <div
+    class="modal-box"
+    style="width:min(900px,100%)"
+  >
 
     <div class="modal-head">
-      <h2 id="dashboardTitle">پنل کاربری</h2>
-      <button class="close" onclick="closeModal('dashboardModal')">×</button>
+
+      <h2 id="dashboardTitle">
+        پنل کاربری
+      </h2>
+
+      <button
+        class="close"
+        onclick="closeModal('dashboardModal')"
+      >
+        ×
+      </button>
+
     </div>
 
     <div class="dashboard">
 
       <div class="sidebar">
 
-        <button class="btn active" onclick="showPanel('orders',this)">
+        <button
+          class="btn active"
+          onclick="showPanel('orders',this)"
+        >
           معاملات
         </button>
 
-        <button class="btn" onclick="showPanel('myads',this)">
+        <button
+          class="btn"
+          onclick="showPanel('myads',this)"
+        >
           آگهی‌های من
         </button>
 
-        <button class="btn hidden" id="adminButton" onclick="showPanel('admin',this)">
+        <button
+          class="btn hidden"
+          id="adminButton"
+          onclick="showPanel('admin',this)"
+        >
           مدیریت
         </button>
 
-        <button class="btn warning" onclick="switchAccount()">
+        <button
+          class="btn warning"
+          onclick="switchAccount()"
+        >
           🔄 تغییر حساب
         </button>
 
-        <button class="btn danger" onclick="logout()">
+        <button
+          class="btn danger"
+          onclick="logout()"
+        >
           خروج
         </button>
 
@@ -797,17 +929,26 @@ footer{
 
       <div class="dashboard-content">
 
-        <div class="panel" id="ordersPanel">
+        <div
+          class="panel"
+          id="ordersPanel"
+        >
           <h2>معاملات من</h2>
           <div id="ordersList"></div>
         </div>
 
-        <div class="panel hidden" id="myadsPanel">
+        <div
+          class="panel hidden"
+          id="myadsPanel"
+        >
           <h2>آگهی‌های من</h2>
           <div id="myAdsList"></div>
         </div>
 
-        <div class="panel hidden" id="adminPanel">
+        <div
+          class="panel hidden"
+          id="adminPanel"
+        >
           <h2>مدیریت معاملات</h2>
           <div id="adminOrdersList"></div>
         </div>
@@ -817,95 +958,150 @@ footer{
     </div>
 
   </div>
+
 </div>
 
-
-<div class="toast" id="toast"></div>
-
+<div
+  class="toast"
+  id="toast"
+></div>
 
 <script>
 
 /* ================= SUPABASE ================= */
 
-const SUPABASE_URL = "https://ebwceuhlavkajhsfubhh.supabase.co";
-const SUPABASE_KEY = "sb_publishable_0Dp87kfBdmhTeaD8d6xKFw_HL1IW9Vc";
-const API = `${SUPABASE_URL}/rest/v1`;
+const SUPABASE_URL =
+  "https://ebwceuhlavkajhsfubhh.supabase.co";
 
-async function supabaseRequest(table, options = {}){
+const SUPABASE_KEY =
+  "sb_publishable_0Dp87kfBdmhTeaD8d6xKFw_HL1IW9Vc";
 
-  const response = await fetch(`${API}/${table}`,{
+const API =
+  `${SUPABASE_URL}/rest/v1`;
 
-    method:options.method || "GET",
+async function supabaseRequest(
+  table,
+  options = {}
+){
 
-    headers:{
-      "apikey":SUPABASE_KEY,
-      "Authorization":`Bearer ${SUPABASE_KEY}`,
-      "Content-Type":"application/json",
-      "Prefer":options.prefer || "return=representation",
-      ...(options.headers || {})
-    },
+  const response = await fetch(
+    `${API}/${table}`,
+    {
 
-    body:options.body
-      ? JSON.stringify(options.body)
-      : undefined
-  });
+      method:
+        options.method || "GET",
+
+      headers:{
+        "apikey":SUPABASE_KEY,
+        "Authorization":
+          `Bearer ${SUPABASE_KEY}`,
+        "Content-Type":
+          "application/json",
+        "Prefer":
+          options.prefer ||
+          "return=representation",
+        ...(options.headers || {})
+      },
+
+      body:
+        options.body
+          ? JSON.stringify(options.body)
+          : undefined
+
+    }
+  );
 
   if(!response.ok){
-    const text = await response.text();
-    console.error("Supabase error:",text);
+
+    const text =
+      await response.text();
+
+    console.error(
+      "Supabase error:",
+      text
+    );
+
     throw new Error(text);
+
   }
 
-  const text = await response.text();
+  const text =
+    await response.text();
 
-  return text ? JSON.parse(text) : null;
+  return text
+    ? JSON.parse(text)
+    : null;
+
 }
-
 
 /* ================= STATE ================= */
 
 let currentUser = JSON.parse(
-  localStorage.getItem("efm_current_user") || "null"
+  localStorage.getItem(
+    "efm_current_user"
+  ) || "null"
 );
 
 let allAccounts = [];
 let allOrders = [];
 let selectedAccountId = null;
 
-
 /* ================= HELPERS ================= */
 
 function escapeHTML(text){
+
   return String(text ?? "")
     .replace(/&/g,"&amp;")
     .replace(/</g,"&lt;")
     .replace(/>/g,"&gt;")
     .replace(/"/g,"&quot;")
     .replace(/'/g,"&#039;");
+
 }
 
 function formatPrice(n){
-  return Number(n || 0).toLocaleString("fa-IR") + " تومان";
+
+  return Number(n || 0)
+    .toLocaleString("fa-IR")
+    + " تومان";
+
 }
 
 function openModal(id){
-  document.getElementById(id).classList.add("show");
+
+  document
+    .getElementById(id)
+    .classList
+    .add("show");
+
 }
 
 function closeModal(id){
-  document.getElementById(id).classList.remove("show");
+
+  document
+    .getElementById(id)
+    .classList
+    .remove("show");
+
 }
 
 function toast(text){
 
-  const el = document.getElementById("toast");
+  const el =
+    document.getElementById(
+      "toast"
+    );
 
   el.textContent = text;
+
   el.classList.add("show");
 
   setTimeout(()=>{
+
     el.classList.remove("show");
-  },3000);
+
+  },5000);
+
 }
 
 function setCurrentUser(user){
@@ -916,45 +1112,70 @@ function setCurrentUser(user){
     "efm_current_user",
     JSON.stringify(user)
   );
-}
 
+}
 
 /* ================= NAV ================= */
 
 function updateNav(){
 
-  const nav = document.getElementById("navActions");
+  const nav =
+    document.getElementById(
+      "navActions"
+    );
 
   if(currentUser){
 
     nav.innerHTML = `
-      <button class="btn outline" onclick="openDashboard()">
-        👤 ${escapeHTML(currentUser.username)}
+
+      <button
+        class="btn outline"
+        onclick="openDashboard()"
+      >
+        👤 ${escapeHTML(
+          currentUser.username
+        )}
       </button>
 
-      <button class="btn warning" onclick="switchAccount()">
+      <button
+        class="btn warning"
+        onclick="switchAccount()"
+      >
         🔄 تغییر حساب
       </button>
 
-      <button class="btn primary" onclick="openSell()">
+      <button
+        class="btn primary"
+        onclick="openSell()"
+      >
         + فروش اکانت
       </button>
+
     `;
 
   }else{
 
     nav.innerHTML = `
-      <button class="btn outline" onclick="openModal('authModal')">
+
+      <button
+        class="btn outline"
+        onclick="openModal('authModal')"
+      >
         ورود / ثبت‌نام
       </button>
 
-      <button class="btn primary" onclick="openSell()">
+      <button
+        class="btn primary"
+        onclick="openSell()"
+      >
         + فروش اکانت
       </button>
-    `;
-  }
-}
 
+    `;
+
+  }
+
+}
 
 /* ================= LOAD DATA ================= */
 
@@ -962,205 +1183,343 @@ async function loadAccounts(){
 
   try{
 
-    const data = await supabaseRequest(
-      "accounts?select=*&order=created_at.desc"
-    );
+    const data =
+      await supabaseRequest(
+        "accounts?select=*&order=created_at.desc"
+      );
 
-    allAccounts = Array.isArray(data) ? data : [];
+    allAccounts =
+      Array.isArray(data)
+        ? data
+        : [];
 
     renderAccounts();
+
     updateStats();
 
   }catch(error){
 
     console.error(error);
 
-    document.getElementById("accountsList").innerHTML =
-      `<div class="empty">خطا در دریافت آگهی‌ها</div>`;
+    document
+      .getElementById(
+        "accountsList"
+      )
+      .innerHTML =
+        `<div class="empty">
+          خطا در دریافت آگهی‌ها
+        </div>`;
+
   }
+
 }
 
 async function loadOrders(){
 
   try{
 
-    const data = await supabaseRequest(
-      "orders?select=*&order=created_at.desc"
-    );
+    const data =
+      await supabaseRequest(
+        "orders?select=*&order=created_at.desc"
+      );
 
-    allOrders = Array.isArray(data) ? data : [];
+    allOrders =
+      Array.isArray(data)
+        ? data
+        : [];
 
     updateStats();
 
   }catch(error){
+
     console.error(error);
+
   }
+
 }
 
 function updateStats(){
 
-  document.getElementById("statAccounts").textContent =
-    allAccounts.length.toLocaleString("fa-IR");
+  document
+    .getElementById(
+      "statAccounts"
+    )
+    .textContent =
+      allAccounts.length
+        .toLocaleString("fa-IR");
 
-  document.getElementById("statOrders").textContent =
-    allOrders.length.toLocaleString("fa-IR");
+  document
+    .getElementById(
+      "statOrders"
+    )
+    .textContent =
+      allOrders.length
+        .toLocaleString("fa-IR");
+
 }
-
 
 /* ================= ACCOUNTS ================= */
 
 function renderAccounts(){
 
-  let accounts = [...allAccounts];
+  let accounts =
+    [...allAccounts];
 
-  const search = document.getElementById("search")
-    .value
-    .trim()
-    .toLowerCase();
+  const search =
+    document
+      .getElementById("search")
+      .value
+      .trim()
+      .toLowerCase();
 
-  const sort = document.getElementById("sort").value;
+  const sort =
+    document
+      .getElementById("sort")
+      .value;
 
   if(search){
 
-    accounts = accounts.filter(a =>
-      `${a.title || ""} ${a.power || ""} ${a.players || ""} ${a.coins || ""}`
-      .toLowerCase()
-      .includes(search)
-    );
+    accounts =
+      accounts.filter(a=>
+
+        `${a.title || ""}
+         ${a.power || ""}
+         ${a.players || ""}
+         ${a.coins || ""}`
+
+        .toLowerCase()
+        .includes(search)
+
+      );
+
   }
 
   if(sort === "low"){
-    accounts.sort((a,b)=>Number(a.price)-Number(b.price));
+
+    accounts.sort(
+      (a,b)=>
+        Number(a.price) -
+        Number(b.price)
+    );
+
   }
 
   if(sort === "high"){
-    accounts.sort((a,b)=>Number(b.price)-Number(a.price));
+
+    accounts.sort(
+      (a,b)=>
+        Number(b.price) -
+        Number(a.price)
+    );
+
   }
 
-  const list = document.getElementById("accountsList");
+  const list =
+    document.getElementById(
+      "accountsList"
+    );
 
   if(!accounts.length){
 
-    list.innerHTML = `
-      <div class="empty">
+    list.innerHTML =
+      `<div class="empty">
         هنوز آگهی‌ای ثبت نشده است.
-      </div>
-    `;
+      </div>`;
 
     return;
+
   }
 
-  list.innerHTML = accounts.map(a=>`
+  list.innerHTML =
+    accounts.map(a=>`
 
-    <div class="card">
+      <div class="card">
 
-      <div class="card-img">⚽</div>
-
-      <div class="card-body">
-
-        <h3>${escapeHTML(a.title)}</h3>
-
-        <div class="info-grid">
-
-          <div class="info">
-            <small>قدرت تیم</small>
-            <strong>${escapeHTML(a.power)}</strong>
-          </div>
-
-          <div class="info">
-            <small>Coins / GP</small>
-            <strong>${escapeHTML(a.coins)}</strong>
-          </div>
-
-          <div class="info">
-            <small>بازیکنان</small>
-            <strong>${escapeHTML(a.players)}</strong>
-          </div>
-
-          <div class="info">
-            <small>وضعیت</small>
-            <strong style="color:var(--green)">موجود</strong>
-          </div>
-
+        <div class="card-img">
+          ⚽
         </div>
 
-        <div class="price">
-          <span>قیمت</span>
-          <b>${formatPrice(a.price)}</b>
-        </div>
+        <div class="card-body">
 
-        <div class="card-actions">
-          <button
-            class="btn small primary"
-            onclick="openBuy('${a.id}')"
-          >
-            خرید
-          </button>
+          <h3>
+            ${escapeHTML(a.title)}
+          </h3>
+
+          <div class="info-grid">
+
+            <div class="info">
+              <small>قدرت تیم</small>
+              <strong>
+                ${escapeHTML(a.power)}
+              </strong>
+            </div>
+
+            <div class="info">
+              <small>Coins / GP</small>
+              <strong>
+                ${escapeHTML(a.coins)}
+              </strong>
+            </div>
+
+            <div class="info">
+              <small>بازیکنان</small>
+              <strong>
+                ${escapeHTML(a.players)}
+              </strong>
+            </div>
+
+            <div class="info">
+              <small>وضعیت</small>
+              <strong
+                style="color:var(--green)"
+              >
+                موجود
+              </strong>
+            </div>
+
+          </div>
+
+          <div class="price">
+
+            <span>قیمت</span>
+
+            <b>
+              ${formatPrice(a.price)}
+            </b>
+
+          </div>
+
+          <div class="card-actions">
+
+            <button
+              class="btn small primary"
+              onclick="openBuy('${a.id}')"
+            >
+              خرید
+            </button>
+
+          </div>
+
         </div>
 
       </div>
 
-    </div>
+    `)
+    .join("");
 
-  `).join("");
 }
-
 
 /* ================= AUTH ================= */
 
 function switchAuth(type){
 
-  const login = type === "login";
+  const login =
+    type === "login";
 
-  document.getElementById("loginForm")
-    .classList.toggle("hidden",!login);
+  document
+    .getElementById("loginForm")
+    .classList
+    .toggle(
+      "hidden",
+      !login
+    );
 
-  document.getElementById("registerForm")
-    .classList.toggle("hidden",login);
+  document
+    .getElementById("registerForm")
+    .classList
+    .toggle(
+      "hidden",
+      login
+    );
 
-  document.getElementById("loginTab")
-    .classList.toggle("active",login);
+  document
+    .getElementById("loginTab")
+    .classList
+    .toggle(
+      "active",
+      login
+    );
 
-  document.getElementById("registerTab")
-    .classList.toggle("active",!login);
+  document
+    .getElementById("registerTab")
+    .classList
+    .toggle(
+      "active",
+      !login
+    );
+
 }
 
 async function register(){
 
-  const username = document.getElementById("registerUsername")
-    .value.trim();
+  const username =
+    document
+      .getElementById(
+        "registerUsername"
+      )
+      .value
+      .trim();
 
-  const phone = document.getElementById("registerPhone")
-    .value.trim();
+  const phone =
+    document
+      .getElementById(
+        "registerPhone"
+      )
+      .value
+      .trim();
 
-  const password = document.getElementById("registerPassword")
-    .value.trim();
+  const password =
+    document
+      .getElementById(
+        "registerPassword"
+      )
+      .value
+      .trim();
 
-  if(username.length < 3 || password.length < 4){
-    toast("نام کاربری و رمز عبور معتبر وارد کن.");
+  if(
+    username.length < 3 ||
+    password.length < 4
+  ){
+
+    toast(
+      "نام کاربری و رمز عبور معتبر وارد کن."
+    );
+
     return;
+
   }
 
   try{
 
-    const exists = await supabaseRequest(
-      `users?username=eq.${encodeURIComponent(username)}&select=id`
-    );
+    const exists =
+      await supabaseRequest(
+        `users?username=eq.${encodeURIComponent(username)}&select=id`
+      );
 
     if(exists.length){
-      toast("این نام کاربری قبلاً ثبت شده است.");
+
+      toast(
+        "این نام کاربری قبلاً ثبت شده است."
+      );
+
       return;
+
     }
 
-    const result = await supabaseRequest("users",{
-      method:"POST",
-      body:{
-        username,
-        phone,
-        password,
-        role:"user"
-      }
-    });
+    const result =
+      await supabaseRequest(
+        "users",
+        {
+          method:"POST",
+
+          body:{
+            username,
+            phone,
+            password,
+            role:"user"
+          }
+        }
+      );
 
     const user = result[0];
 
@@ -1171,37 +1530,63 @@ async function register(){
     });
 
     closeModal("authModal");
+
     updateNav();
 
-    toast("ثبت‌نام با موفقیت انجام شد.");
+    toast(
+      "ثبت‌نام با موفقیت انجام شد."
+    );
 
   }catch(error){
 
     console.error(error);
-    toast("خطا در ثبت‌نام.");
+
+    toast(
+      "خطا در ثبت‌نام: " +
+      error.message
+    );
+
   }
+
 }
 
 async function login(){
 
-  const username = document.getElementById("loginUsername")
-    .value.trim();
+  const username =
+    document
+      .getElementById(
+        "loginUsername"
+      )
+      .value
+      .trim();
 
-  const password = document.getElementById("loginPassword")
-    .value.trim();
+  const password =
+    document
+      .getElementById(
+        "loginPassword"
+      )
+      .value
+      .trim();
 
   try{
 
-    const result = await supabaseRequest(
-      `users?username=eq.${encodeURIComponent(username)}&password=eq.${encodeURIComponent(password)}&select=*`
-    );
+    const result =
+      await supabaseRequest(
+        `users?username=eq.${encodeURIComponent(username)}&password=eq.${encodeURIComponent(password)}&select=*`
+      );
 
     if(!result.length){
-      toast("نام کاربری یا رمز عبور اشتباه است.");
+
+      toast(
+        "نام کاربری یا رمز عبور اشتباه است."
+      );
+
       return;
+
     }
 
-    const user = result[0];
+    const user =
+      result[0];
 
     setCurrentUser({
       id:user.id,
@@ -1210,27 +1595,40 @@ async function login(){
     });
 
     closeModal("authModal");
+
     updateNav();
 
-    toast("خوش آمدی " + user.username);
+    toast(
+      "خوش آمدی " +
+      user.username
+    );
 
   }catch(error){
 
     console.error(error);
-    toast("خطا در ورود.");
+
+    toast(
+      "خطا در ورود: " +
+      error.message
+    );
+
   }
+
 }
 
-
-/* ================= ACCOUNT ================= */
+/* ================= SWITCH ACCOUNT ================= */
 
 function switchAccount(){
 
-  localStorage.removeItem("efm_current_user");
+  localStorage.removeItem(
+    "efm_current_user"
+  );
 
   currentUser = null;
 
-  closeModal("dashboardModal");
+  closeModal(
+    "dashboardModal"
+  );
 
   updateNav();
 
@@ -1238,22 +1636,33 @@ function switchAccount(){
 
   openModal("authModal");
 
-  toast("حساب فعلی خارج شد. می‌توانی وارد حساب دیگر شوی.");
+  toast(
+    "حساب فعلی خارج شد. حالا می‌توانی وارد حساب دیگر شوی یا ثبت‌نام کنی."
+  );
+
 }
+
+/* ================= LOGOUT ================= */
 
 function logout(){
 
-  localStorage.removeItem("efm_current_user");
+  localStorage.removeItem(
+    "efm_current_user"
+  );
 
   currentUser = null;
 
-  closeModal("dashboardModal");
+  closeModal(
+    "dashboardModal"
+  );
 
   updateNav();
 
-  toast("از حساب خارج شدی.");
-}
+  toast(
+    "از حساب خارج شدی."
+  );
 
+}
 
 /* ================= SELL ================= */
 
@@ -1261,62 +1670,103 @@ function openSell(){
 
   if(!currentUser){
 
-    toast("اول وارد حساب شو.");
+    toast(
+      "اول وارد حساب شو."
+    );
 
-    openModal("authModal");
+    openModal(
+      "authModal"
+    );
 
     return;
+
   }
 
-  openModal("sellModal");
+  openModal(
+    "sellModal"
+  );
+
 }
 
 async function addAccount(){
 
   if(!currentUser) return;
 
-  const title = document.getElementById("sellTitle")
-    .value.trim();
+  const title =
+    document
+      .getElementById("sellTitle")
+      .value
+      .trim();
 
-  const power = document.getElementById("sellPower")
-    .value.trim();
+  const power =
+    document
+      .getElementById("sellPower")
+      .value
+      .trim();
 
-  const players = document.getElementById("sellPlayers")
-    .value.trim();
+  const players =
+    document
+      .getElementById("sellPlayers")
+      .value
+      .trim();
 
-  const coins = document.getElementById("sellCoins")
-    .value.trim();
+  const coins =
+    document
+      .getElementById("sellCoins")
+      .value
+      .trim();
 
-  const price = Number(
-    document.getElementById("sellPrice").value
-  );
+  const price =
+    Number(
+      document
+        .getElementById("sellPrice")
+        .value
+    );
 
-  const description = document.getElementById("sellDescription")
-    .value.trim();
+  const description =
+    document
+      .getElementById(
+        "sellDescription"
+      )
+      .value
+      .trim();
 
-  if(!title || !power || !players || !price){
+  if(
+    !title ||
+    !power ||
+    !players ||
+    !price
+  ){
 
-    toast("اطلاعات ضروری را کامل وارد کن.");
+    toast(
+      "اطلاعات ضروری را کامل وارد کن."
+    );
 
     return;
+
   }
 
   try{
 
-    await supabaseRequest("accounts",{
+    await supabaseRequest(
+      "accounts",
+      {
+        method:"POST",
 
-      method:"POST",
-
-      body:{
-        seller:currentUser.username,
-        title,
-        power,
-        players,
-        coins:coins || "نامشخص",
-        price,
-        description:description || ""
+        body:{
+          seller:
+            currentUser.username,
+          title,
+          power,
+          players,
+          coins:
+            coins || "نامشخص",
+          price,
+          description:
+            description || ""
+        }
       }
-    });
+    );
 
     [
       "sellTitle",
@@ -1325,24 +1775,38 @@ async function addAccount(){
       "sellCoins",
       "sellPrice",
       "sellDescription"
-    ].forEach(id=>{
-      document.getElementById(id).value = "";
+    ]
+    .forEach(id=>{
+
+      document
+        .getElementById(id)
+        .value = "";
+
     });
 
-    closeModal("sellModal");
+    closeModal(
+      "sellModal"
+    );
 
     await loadAccounts();
 
-    toast("آگهی با موفقیت ثبت شد.");
+    toast(
+      "آگهی با موفقیت ثبت شد."
+    );
 
   }catch(error){
 
     console.error(error);
 
-    toast("خطا در ثبت آگهی.");
-  }
-}
+    /* خطای دقیق Supabase اینجا نمایش داده می‌شود */
+    toast(
+      "خطا: " +
+      error.message
+    );
 
+  }
+
+}
 
 /* ================= BUY ================= */
 
@@ -1350,335 +1814,421 @@ function openBuy(id){
 
   if(!currentUser){
 
-    toast("برای خرید ابتدا وارد حساب شو.");
+    toast(
+      "برای خرید ابتدا وارد حساب شو."
+    );
 
-    openModal("authModal");
+    openModal(
+      "authModal"
+    );
 
     return;
+
   }
 
-  const account = allAccounts.find(
-    a=>String(a.id) === String(id)
-  );
+  const account =
+    allAccounts.find(
+      a=>
+        String(a.id) ===
+        String(id)
+    );
 
   if(!account) return;
 
-  if(account.seller === currentUser.username){
+  if(
+    account.seller ===
+    currentUser.username
+  ){
 
-    toast("نمی‌توانی آگهی خودت را بخری.");
+    toast(
+      "نمی‌توانی آگهی خودت را بخری."
+    );
 
     return;
+
   }
 
   selectedAccountId = id;
 
-  document.getElementById("buyInfo").innerHTML = `
-    <strong>${escapeHTML(account.title)}</strong>
-    <br><br>
-    مبلغ: ${formatPrice(account.price)}
-    <br><br>
-    فروشنده: ${escapeHTML(account.seller)}
-  `;
+  document
+    .getElementById("buyInfo")
+    .innerHTML = `
 
-  openModal("buyModal");
+      <strong>
+        ${escapeHTML(account.title)}
+      </strong>
+
+      <br>
+
+      مبلغ:
+      ${formatPrice(account.price)}
+
+    `;
+
+  openModal(
+    "buyModal"
+  );
+
 }
 
 async function createOrder(){
 
-  const account = allAccounts.find(
-    a=>String(a.id) === String(selectedAccountId)
-  );
+  const account =
+    allAccounts.find(
+      a=>
+        String(a.id) ===
+        String(selectedAccountId)
+    );
 
-  if(!currentUser || !account){
+  if(
+    !currentUser ||
+    !account
+  ){
 
-    toast("خطا در ثبت درخواست.");
+    toast(
+      "خطا در ثبت درخواست."
+    );
 
     return;
+
   }
 
-  const message = document.getElementById("buyMessage")
-    .value.trim();
+  const message =
+    document
+      .getElementById("buyMessage")
+      .value
+      .trim();
 
   try{
 
-    await supabaseRequest("orders",{
+    await supabaseRequest(
+      "orders",
+      {
+        method:"POST",
 
-      method:"POST",
-
-      body:{
-        account_id:account.id,
-        account_title:account.title,
-        price:account.price,
-        buyer:currentUser.username,
-        seller:account.seller,
-        status:"در انتظار بررسی",
-        buyer_message:message,
-        seller_confirmed:false,
-        buyer_confirmed:false
+        body:{
+          account_id:account.id,
+          account_title:account.title,
+          price:account.price,
+          buyer:currentUser.username,
+          seller:account.seller,
+          status:"در انتظار بررسی",
+          buyer_message:message
+        }
       }
-    });
+    );
 
-    document.getElementById("buyMessage").value = "";
+    document
+      .getElementById("buyMessage")
+      .value = "";
 
-    closeModal("buyModal");
+    closeModal(
+      "buyModal"
+    );
 
     await loadOrders();
 
-    toast("درخواست معامله ثبت شد.");
+    toast(
+      "درخواست معامله ثبت شد."
+    );
 
   }catch(error){
 
     console.error(error);
 
-    toast("خطا در ثبت درخواست معامله.");
-  }
-}
+    toast(
+      "خطا در ثبت درخواست معامله: " +
+      error.message
+    );
 
+  }
+
+}
 
 /* ================= DASHBOARD ================= */
 
-async function openDashboard(){
+function openDashboard(){
 
   if(!currentUser){
 
-    openModal("authModal");
+    openModal(
+      "authModal"
+    );
 
     return;
+
   }
 
-  await loadOrders();
-  await loadAccounts();
+  document
+    .getElementById(
+      "dashboardTitle"
+    )
+    .textContent =
 
-  document.getElementById("dashboardTitle").textContent =
+      currentUser.role === "admin"
 
-    currentUser.role === "admin"
+      ? "پنل مدیریت"
 
-    ? "پنل مدیریت"
+      : "پنل کاربری " +
+        currentUser.username;
 
-    : "پنل کاربری " + currentUser.username;
-
-  document.getElementById("adminButton")
-    .classList.toggle(
+  document
+    .getElementById(
+      "adminButton"
+    )
+    .classList
+    .toggle(
       "hidden",
       currentUser.role !== "admin"
     );
 
   renderOrders();
+
   renderMyAds();
+
   renderAdminOrders();
 
-  openModal("dashboardModal");
+  openModal(
+    "dashboardModal"
+  );
+
 }
 
-function showPanel(name,button){
+function showPanel(
+  name,
+  button
+){
 
-  ["orders","myads","admin"].forEach(id=>{
+  ["orders","myads","admin"]
+  .forEach(id=>{
 
-    document.getElementById(id+"Panel")
-      .classList.toggle(
+    document
+      .getElementById(
+        id+"Panel"
+      )
+      .classList
+      .toggle(
         "hidden",
         id !== name
       );
+
   });
 
-  document.querySelectorAll(".sidebar button")
+  document
+    .querySelectorAll(
+      ".sidebar button"
+    )
     .forEach(b=>{
-      b.classList.remove("active");
+
+      b.classList.remove(
+        "active"
+      );
+
     });
 
   if(button){
-    button.classList.add("active");
+
+    button.classList.add(
+      "active"
+    );
+
   }
+
 }
 
 function statusClass(status){
 
-  if(status === "تکمیل شده"){
+  if(
+    status ===
+    "تکمیل شده"
+  ){
+
     return "done";
+
   }
 
-  if(status === "لغو شده"){
+  if(
+    status ===
+    "لغو شده"
+  ){
+
     return "cancel";
+
   }
 
   return "";
+
 }
-
-
-/* ================= USER ORDERS ================= */
 
 function renderOrders(){
 
   if(!currentUser) return;
 
-  const orders = allOrders.filter(o=>
-    o.buyer === currentUser.username ||
-    o.seller === currentUser.username
-  );
+  const orders =
+    allOrders.filter(o=>
 
-  const list = document.getElementById("ordersList");
+      o.buyer ===
+      currentUser.username ||
+
+      o.seller ===
+      currentUser.username
+
+    );
+
+  const list =
+    document.getElementById(
+      "ordersList"
+    );
 
   if(!orders.length){
 
-    list.innerHTML = `
-      <div class="empty">
+    list.innerHTML =
+      `<div class="empty">
         هنوز معامله‌ای نداری.
-      </div>
-    `;
+      </div>`;
 
     return;
+
   }
 
-  list.innerHTML = orders.map(o=>`
+  list.innerHTML =
+    orders.map(o=>`
 
-    <div class="order">
+      <div class="order">
 
-      <div class="order-top">
+        <div class="order-top">
 
-        <span class="order-title">
-          ${escapeHTML(o.account_title)}
-        </span>
+          <span class="order-title">
+            ${escapeHTML(
+              o.account_title
+            )}
+          </span>
 
-        <span class="status ${statusClass(o.status)}">
-          ${escapeHTML(o.status)}
-        </span>
+          <span
+            class="status ${statusClass(o.status)}"
+          >
+            ${escapeHTML(o.status)}
+          </span>
 
-      </div>
+        </div>
 
-      <small>
-        خریدار: ${escapeHTML(o.buyer)}
-      </small>
+        <small>
+          خریدار:
+          ${escapeHTML(o.buyer)}
+          |
+          فروشنده:
+          ${escapeHTML(o.seller)}
+        </small>
 
-      <small>
-        فروشنده: ${escapeHTML(o.seller)}
-      </small>
-
-      <small>
-        مبلغ: ${formatPrice(o.price)}
-      </small>
-
-      ${
-        o.buyer_message
-        ? `<small>پیام خریدار: ${escapeHTML(o.buyer_message)}</small>`
-        : ""
-      }
-
-      <div class="order-actions">
+        <small>
+          مبلغ:
+          ${formatPrice(o.price)}
+        </small>
 
         ${
-          currentUser.username === o.seller &&
-          o.status === "در انتظار بررسی"
+          currentUser.username ===
+          o.seller &&
 
-          ? `
-            <button
-              class="btn small primary"
-              onclick="changeOrderStatus('${o.id}','در حال انتقال')"
-            >
-              قبول معامله
-            </button>
-          `
+          o.status ===
+          "در انتظار بررسی"
+
+          ?
+
+          `<button
+            class="btn small primary"
+            style="margin-top:10px"
+            onclick="changeOrderStatus('${o.id}','در حال انتقال')"
+          >
+            قبول معامله
+          </button>`
 
           : ""
         }
 
         ${
-          currentUser.username === o.buyer &&
-          o.status === "در انتظار بررسی"
+          currentUser.username ===
+          o.buyer &&
 
-          ? `
-            <button
-              class="btn small danger"
-              onclick="changeOrderStatus('${o.id}','لغو شده')"
-            >
-              لغو درخواست
-            </button>
-          `
+          o.status ===
+          "در حال انتقال"
 
-          : ""
-        }
+          ?
 
-        ${
-          currentUser.username === o.buyer &&
-          o.status === "در حال انتقال"
-
-          ? `
-            <button
-              class="btn small primary"
-              onclick="changeOrderStatus('${o.id}','تکمیل شده')"
-            >
-              تأیید دریافت
-            </button>
-          `
+          `<button
+            class="btn small primary"
+            style="margin-top:10px"
+            onclick="changeOrderStatus('${o.id}','تکمیل شده')"
+          >
+            تأیید دریافت
+          </button>`
 
           : ""
         }
 
       </div>
 
-    </div>
+    `)
+    .join("");
 
-  `).join("");
 }
-
-
-/* ================= MY ADS ================= */
 
 function renderMyAds(){
 
   if(!currentUser) return;
 
-  const accounts = allAccounts.filter(
-    a=>a.seller === currentUser.username
-  );
+  const accounts =
+    allAccounts.filter(
+      a=>
+        a.seller ===
+        currentUser.username
+    );
 
-  const list = document.getElementById("myAdsList");
+  const list =
+    document.getElementById(
+      "myAdsList"
+    );
 
   if(!accounts.length){
 
-    list.innerHTML = `
-      <div class="empty">
+    list.innerHTML =
+      `<div class="empty">
         هنوز آگهی ثبت نکردی.
-      </div>
-    `;
+      </div>`;
 
     return;
+
   }
 
-  list.innerHTML = accounts.map(a=>`
+  list.innerHTML =
+    accounts.map(a=>`
 
-    <div class="order">
+      <div class="order">
 
-      <div class="order-top">
+        <div class="order-top">
 
-        <span class="order-title">
-          ${escapeHTML(a.title)}
-        </span>
+          <span class="order-title">
+            ${escapeHTML(a.title)}
+          </span>
 
-        <b style="color:var(--green)">
-          ${formatPrice(a.price)}
-        </b>
+          <b
+            style="color:var(--green)"
+          >
+            ${formatPrice(a.price)}
+          </b>
+
+        </div>
+
+        <small>
+          قدرت تیم:
+          ${escapeHTML(a.power)}
+        </small>
 
       </div>
 
-      <small>
-        قدرت تیم: ${escapeHTML(a.power)}
-      </small>
+    `)
+    .join("");
 
-      <small>
-        بازیکنان: ${escapeHTML(a.players)}
-      </small>
-
-      <small>
-        Coins / GP: ${escapeHTML(a.coins)}
-      </small>
-
-    </div>
-
-  `).join("");
 }
-
-
-/* ================= ADMIN ================= */
 
 function renderAdminOrders(){
 
@@ -1687,96 +2237,88 @@ function renderAdminOrders(){
     currentUser.role !== "admin"
   ) return;
 
-  const list = document.getElementById(
-    "adminOrdersList"
-  );
+  const list =
+    document.getElementById(
+      "adminOrdersList"
+    );
 
-  if(!allOrders.length){
+  list.innerHTML =
+    allOrders.map(o=>`
 
-    list.innerHTML = `
-      <div class="empty">
-        معامله‌ای وجود ندارد.
-      </div>
-    `;
+      <div class="order">
 
-    return;
-  }
+        <div class="order-top">
 
-  list.innerHTML = allOrders.map(o=>`
+          <span class="order-title">
+            ${escapeHTML(
+              o.account_title
+            )}
+          </span>
 
-    <div class="order">
+          <span
+            class="status ${statusClass(o.status)}"
+          >
+            ${escapeHTML(o.status)}
+          </span>
 
-      <div class="order-top">
+        </div>
 
-        <span class="order-title">
-          ${escapeHTML(o.account_title)}
-        </span>
+        <small>
+          خریدار:
+          ${escapeHTML(o.buyer)}
+        </small>
 
-        <span class="status ${statusClass(o.status)}">
-          ${escapeHTML(o.status)}
-        </span>
+        <small>
+          فروشنده:
+          ${escapeHTML(o.seller)}
+        </small>
 
-      </div>
+        <small>
+          مبلغ:
+          ${formatPrice(o.price)}
+        </small>
 
-      <small>
-        خریدار: ${escapeHTML(o.buyer)}
-      </small>
-
-      <small>
-        فروشنده: ${escapeHTML(o.seller)}
-      </small>
-
-      <small>
-        مبلغ: ${formatPrice(o.price)}
-      </small>
-
-      ${
-        o.buyer_message
-        ? `<small>پیام خریدار: ${escapeHTML(o.buyer_message)}</small>`
-        : ""
-      }
-
-      <div class="order-actions">
-
-        <button
-          class="btn small warning"
-          onclick="changeOrderStatus('${o.id}','در انتظار بررسی')"
+        <div
+          style="
+            display:flex;
+            gap:7px;
+            margin-top:10px
+          "
         >
-          انتظار
-        </button>
 
-        <button
-          class="btn small primary"
-          onclick="changeOrderStatus('${o.id}','در حال انتقال')"
-        >
-          انتقال
-        </button>
+          <button
+            class="btn small primary"
+            onclick="changeOrderStatus('${o.id}','در حال انتقال')"
+          >
+            در حال انتقال
+          </button>
 
-        <button
-          class="btn small primary"
-          onclick="changeOrderStatus('${o.id}','تکمیل شده')"
-        >
-          تکمیل
-        </button>
+          <button
+            class="btn small primary"
+            onclick="changeOrderStatus('${o.id}','تکمیل شده')"
+          >
+            تکمیل
+          </button>
 
-        <button
-          class="btn small danger"
-          onclick="changeOrderStatus('${o.id}','لغو شده')"
-        >
-          لغو
-        </button>
+        </div>
 
       </div>
 
-    </div>
+    `)
+    .join("")
 
-  `).join("");
+    ||
+
+    `<div class="empty">
+      معامله‌ای وجود ندارد.
+    </div>`;
+
 }
 
-
-/* ================= UPDATE ORDER ================= */
-
-async function changeOrderStatus(id,status){
+async function changeOrderStatus(
+  id,
+  status
+){
 
   try{
 
@@ -1791,28 +2333,46 @@ async function changeOrderStatus(id,status){
     await loadOrders();
 
     renderOrders();
+
     renderAdminOrders();
 
-    toast("وضعیت معامله تغییر کرد.");
+    toast(
+      "وضعیت معامله تغییر کرد."
+    );
 
   }catch(error){
 
     console.error(error);
 
-    toast("خطا در تغییر وضعیت.");
-  }
-}
+    toast(
+      "خطا در تغییر وضعیت: " +
+      error.message
+    );
 
+  }
+
+}
 
 /* ================= START ================= */
 
-window.addEventListener("click",e=>{
+window.addEventListener(
+  "click",
+  e=>{
 
-  if(e.target.classList.contains("modal")){
-    e.target.classList.remove("show");
+    if(
+      e.target.classList.contains(
+        "modal"
+      )
+    ){
+
+      e.target
+        .classList
+        .remove("show");
+
+    }
+
   }
-
-});
+);
 
 updateNav();
 
@@ -1827,4 +2387,4 @@ updateNav();
 </script>
 
 </body>
-</html>          
+            </html>
